@@ -236,6 +236,62 @@ terraform state mv local_file.pet.txt local_file.animal.txt -> to rename resourc
 terraform state rm local_file.animal.txt                    -> to remove the resource configuration from state file
 ```
 
+### provisioners
+
+- Remote Exec Provisioner
+- Local Exec Provisioner along with (- Destroy Time Provisioner/ Failure Behaviour)
+
+**Local-exec provisioner with destroy**
+
+```
+resource "aws_instance" "web" {
+  ami            =  "ami-xxxxxxxxx"
+  instance_type  =  "t2.micro"
+  provisioner "local-exec" {
+       command = "echo Instance ${aws_instance.web.pubic_ip} created! > /tmp/instance_state.txt"
+    }
+   provisioner "local-exec" {
+       when = destroy
+       command = "echo Instance ${aws_instance.web.pubic_ip} created! > /tmp/instance_state.txt"
+    }
+}
+```
+
+**Local-exec provisioner with failure**
+
+```
+resource "aws_instance" "web" {
+  ami            =  "ami-xxxxxxxxx"
+  instance_type  =  "t2.micro"
+  provisioner "local-exec" {
+       on_failure = fail
+       command = "echo Instance ${aws_instance.web.pubic_ip} created! > /tmp/instance_state.txt"
+    }
+   provisioner "local-exec" {
+       when = destroy
+       command = "echo Instance ${aws_instance.web.pubic_ip} created! > /tmp/instance_state.txt"
+    }
+}
+```
+
+**Local-exec provisioner with failure with continue**
+
+```
+resource "aws_instance" "web" {
+  ami            =  "ami-xxxxxxxxx"
+  instance_type  =  "t2.micro"
+  provisioner "local-exec" {
+       on_failure = continue
+       command = "echo Instance ${aws_instance.web.pubic_ip} created! > /tmp/instance_state.txt"
+    }
+   provisioner "local-exec" {
+       when = destroy
+       command = "echo Instance ${aws_instance.web.pubic_ip} created! > /tmp/instance_state.txt"
+    }
+}
+```
+
+
 
 
 
