@@ -75,6 +75,9 @@ terraform apply -refresh-only
 terraform refresh
 terraform graph
 terraform providers mirror 
+terrform taint
+terraform untaint
+terraform import
 
 ### immutable vs mutable infrastructure
 
@@ -291,7 +294,11 @@ resource "aws_instance" "web" {
 }
 ```
 
+### Taint and unTaint
 
+### terraform import
+
+### log_levels info/warning/error/debug/trace
 
 
 
