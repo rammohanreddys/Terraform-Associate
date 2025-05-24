@@ -119,22 +119,23 @@ lifecycle {
 
 - depends_on
 - lifecycle
-- count    list(string) uses index pattern to create resouces
-- for_each set(string) uses map to create resources  
+- count     -> list(string) uses index pattern to create resouces
+- for_each  -> set(string) uses map to create resources  
 ---
 ### Count
 example:
 
 
 ```
- ** main.tf**
-  
+main.tf
+---
   resource local_file pet {
   filename = var.filename[count.index]
   count = 3
   }
 
-  **variables.tf**
+variables.tf
+---
 
   variable filename {
   default = [
@@ -145,25 +146,26 @@ example:
   }
 ```
 
-  terraform apply gives 3 files created and variables of file names were store in this order - index[0] = /root/pets.txt, index[1]= /root/dogs.txt, index[2]= /root/cats.txt
-  but when remove one value from variable  It will delete the index[0] and also it will replaces other two files 
-  when you remove one value from variable index (/root/pets.txt), it will delete removed index value and adjust other two variable index values index[1] = index[0], index[2]=index[1]
-  finally two files were created and its index value are index[0]=/root/dogs.txt, index[1]=/root/cats.txt.
+  **Explanantion:** 
+  * Terraform apply gives 3 files created and variables of file names were store in this order - index[0] = /root/pets.txt, index[1]= /root/dogs.txt, index[2]= /root/cats.txt 
+  * when you remove one value from variable index (/root/pets.txt), it will delete removed index value and adjust other two variable index values index[1] = index[0], index[2]=index[1]
+  * Finally two files were created and its index value are index[0]=/root/dogs.txt, index[1]=/root/cats.txt.
 
   ### Other way to create the multiple files with count with repsect to variable block:
   
 
 ``` 
- ** main.tf**
-  
+main.tf
+---
   resource local_file pet {
   filename = var.filename[count.index]
   count = length(var.filename)
   }
 
-  **variables.tf**
-
+variables.tf
+---
   variable filename {
+  type = list(string)
   default = [
    "/root/pets.txt",
    "/root/dogs.txt",
@@ -176,7 +178,54 @@ example:
 
 Note: This time it will create total number of files equal to length of the variable index, which is 5
 
-length function
+### for_each:
+example:
+
+```
+main.tf
+---
+  resource local_file pet {
+  filename = each.value
+  for_each = var.filename
+  }
+
+variables.tf
+---
+  variable filename {
+  type = set(string)
+  default = [
+   "/root/pets.txt",
+   "/root/dogs.txt",
+   "/root/cats.txt",
+    ]
+  }
+```
+### Other way to define for_each main.tf file:
+
+```
+main.tf
+---
+  resource local_file pet {
+  filename = each.value
+  for_each = toset(var.filename)
+  }
+
+variables.tf
+---
+  variable filename {
+  type = list(string)
+  default = [
+   "/root/pets.txt",
+   "/root/dogs.txt",
+   "/root/cats.txt",
+    ]
+  }
+```
+
+**Explanation:**
+Terraform apply gives creation of 3 files with map function. (key:value pair). When you remove one of file name from variable list, it will just delete matched key file and keep other files same.
+
+
 
 
 
