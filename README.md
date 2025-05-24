@@ -59,7 +59,7 @@ precedence order ->
 
 ### output variables
 
-### terraform statefile / remote backend
+### terraform statefile / remote backend / state lock
 
 ### terraform command examples
 
@@ -67,7 +67,7 @@ terraform init
 terraform plan
 terraform apply
 terraform validate
-terraform show / terraform state show
+terraform show / terraform state show/list/mv/pull/rm
 terraform fmt
 terraform providers
 terraform output
@@ -225,6 +225,16 @@ variables.tf
 **Explanation:**
 Terraform apply gives creation of 3 files with map function. (key:value pair). When you remove one of file name from variable list, it will just delete matched key file and keep other files same.
 
+### Version Constraints:
+
+### terraform state commands: terraform state show/list/mv/pull/rm
+
+```
+terraform state show local_file.pet.txt                     -> to show specific resource configuration
+terraform state list                                        -> to list all resource in the remote state 
+terraform state mv local_file.pet.txt local_file.animal.txt -> to rename resource name from state file (After running this command also update in configuration file (main.tf))
+terraform state rm local_file.animal.txt                    -> to remove the resource configuration from state file
+```
 
 
 
