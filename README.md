@@ -59,6 +59,25 @@ precedence order ->
 
 ### output variables
 
+### terraform statefile
+
+### terraform command examples
+
+terraform init
+terraform plan
+terraform apply
+terraform validate
+terraform fmt
+terraform providers
+terraform output
+terraform apply -refresh-only
+terraform refresh
+terraform graph
+
+
+
+
+
 
 
 
