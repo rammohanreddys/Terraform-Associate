@@ -29,6 +29,39 @@ local_sensitive_file
 random provider
 
 
+### variable data types:
+
+1. string
+2. number
+3. boolean
+4. list
+5. map
+6. object
+7. set
+8. tuple
+
+Try an example for each data type with variable call
+
+### types of variables in terraform
+
+#### variable definition precedence
+
+1. from envrionment variables (TF_VAR_filename or export 
+2. from terraform.tfvars
+3. from *.auto.tfvars
+4. from command line arguments
+
+precedence order -> 
+
+### Resource dependencies (implicit /explicit) reference expression
+
+### how to call resource dependency from one resource to another resource attribute
+
+### output variables
+
+
+
+
 
 
 
