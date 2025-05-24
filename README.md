@@ -59,7 +59,7 @@ precedence order ->
 
 ### output variables
 
-### terraform statefile
+### terraform statefile / remote backend
 
 ### terraform command examples
 
@@ -73,6 +73,42 @@ terraform output
 terraform apply -refresh-only
 terraform refresh
 terraform graph
+terraform providers mirror 
+
+### immutable vs mutable infrastructure
+
+configuration drift
+
+### life cycle rules
+
+- create_before_destroy    (create resource fisrt and then destroy older)
+
+```
+lifecycle {
+  create_before_destroy = true
+}
+```
+- prvent_destroy             (Prevents destroy of a resource)
+
+```
+lifecycle {
+  prvent_destroy = true
+}
+```
+
+- ingore_changes            (Ingroe chnages to resource attributes (specific/all)
+
+```
+lifecycle {
+  ignore_changes = [tags]
+ }
+```
+
+
+
+
+
+
 
 
 
