@@ -9,7 +9,7 @@
   
   
   <details>
-  <summary>2. Understand the puprose of Terraform (vs Other IAC)</summary>
+  <summary>2. Understand the purpose of Terraform (vs Other IAC)</summary>
   
         - Explain multi-cloud and provider-agnostic benefits
         - Explain the benefits of state
@@ -19,7 +19,7 @@
     <summary>3. Understand Terraform basics</summary>
   
         - Install and version terraform providers
-        - Describe plugin-based arhcitecture
+        - Describe plugin-based architecture
         - Write Terraform configuration using multiple providers
         - Describe how terraform finds and fetches providers
   </details>
@@ -82,7 +82,12 @@
     
         - Explain how HCP Terraform helps to manage infrastructure
         - Describe how HCP Terraform enables collaboration and governance  
-  </detals>
+  </details>
 
+# 1. Understand Infrastructure as Code (IaC) concepts:
+
+## What is Terraform?
+
+HashiCorp Terraform is an infrastructure as code tool that lets you define both cloud and on-prem resources in human-readable configuration files that you can version, reuse, and share. You can then use a consistent workflow to provision and manage all of your infrastructure throughout its lifecycle. Terraform can manage low-level components like compute, storage, and networking resources, as well as high-level components like DNS entries and SaaS features.
 
 
