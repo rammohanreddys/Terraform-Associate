@@ -305,6 +305,44 @@ When you run terraform apply, Terraform performs the following steps:
 # terraform state show <resource>
 ```
 
+## Managing Resources in Terraform State:
+
+Terraform state management is essential when you're dealing with changes to infrastructure that aren’t always reflected through configuration changes. It gives you tools to inspect, modify, or recover resources within the state file, without touching the actual infrastructure.
+
+### 🧰 Core Commands to Manage Terraform State:
+
+|Command|Purpose|
+|:--|:--|
+|terraform state list|Lists all tracked resources|
+
+
+Example:
+```
+1. Viewing All Resources:
+# terraform state list
+
+2. Removing a Resource from State (without destroying it)
+# terraform state rm aws_instance.example
+
+3. Renaming or Refactoring a Resource
+# terraform state mv aws_instance.old aws_instance.new
+
+4. Importing Existing Infrastructure
+# terraform import aws_instance.example i-0ab1234567890cdef
+
+5. Inspecting Resource Details
+terraform state show aws_instance.example
+
+6. terraform taint <resource_address> / terraform untaint <resource_address>
+terraform taint aws_instance.web_server[0]
+```
+
+* **Taint**: Explicitly marks a managed resource for recreation during the next apply. Terraform will plan to destroy and then create this resource, even if its configuration hasn't changed.
+* **Untaint**: Removes the tainted status, meaning the resource will only be modified if its configuration changes.
+
+### Note:
+**When to use:** When you suspect a resource is in a bad state and needs to be rebuilt from scratch, but you don't want to manually destroy it first.
+
 
 
 
