@@ -101,6 +101,9 @@
 * State
 * Upgrade Guidlines
 
+ ![image](https://github.com/user-attachments/assets/50aad5f3-d4a6-4042-9bf6-a1869b3f7d58)
+ 
+
 # 1. Understand Infrastructure as Code (IaC) concepts:
 
 ## 1(a). What is Terraform?
@@ -125,6 +128,8 @@ The core Terraform workflow consists of three stages:
 
 ## Why Terraform?
 
+![image](https://github.com/user-attachments/assets/fd43a67f-36d8-467d-8fae-87e2428ac457)
+
 - Manage any infrastructure
 - Track your infrastructure
 - Automate changes
@@ -132,6 +137,8 @@ The core Terraform workflow consists of three stages:
 - Collaborate
 
 ## What is Infrastructure as Code with Terraform?
+
+![image](https://github.com/user-attachments/assets/9d215268-8b61-41f9-ac28-5cdc1bef202b)
 
 Infrastructure as Code (IaC) tools allow you to manage infrastructure with configuration files rather than through a graphical user interface. IaC allows you to build, change, and manage your infrastructure in a safe, consistent, and repeatable way by defining resource configurations that you can version, reuse, and share.
 
@@ -258,18 +265,11 @@ In the event of a disaster, you can quickly rebuild your entire infrastructure b
 * IaC can be linted, tested, and validated before deployment using tools like terraform validate, terratest, or pre-commit. 
 * Enables test environments to be created and torn down on demand.
 
-
-
-
-
-
-
-
-
-
-
+<hr style="height:3px;border:none;color:#333;background-color:#333;" />
 
 # 2. Understand the purpose of Terraform (vs Other IAC)
+
+![image](https://github.com/user-attachments/assets/40050b64-94ba-4036-847a-f54ac1eaf7a7)
 
 ### Multi-Cloud Deployment
 
@@ -363,11 +363,6 @@ Terraform state management is essential when you're dealing with changes to infr
 
 ### 🧰 Core Commands to Manage Terraform State:
 
-|Command|Purpose|
-|:--|:--|
-|terraform state list|Lists all tracked resources|
-
-
 Example:
 ```
 1. Viewing All Resources:
@@ -395,6 +390,74 @@ terraform taint aws_instance.web_server[0]
 ### Note:
 **When to use:** When you suspect a resource is in a bad state and needs to be rebuilt from scratch, but you don't want to manually destroy it first.
 
+<hr style="height:3px;border:none;color:#333;background-color:#333;" />
+
+# 3. Understand Terraform basics:
+
+To get started with Terraform, it's important to grasp the core components and how they work together. Terraform is a powerful Infrastructure as Code (IaC) tool that enables you to define, provision, and manage infrastructure using simple configuration files.
+
+## 3(a). Install and version Terraform providers:
+
+### Key Concepts:
+
+![image](https://github.com/user-attachments/assets/b606802b-de58-4bd5-afa9-7c7f1c435a7d)
+
+* **Configuration Files**  - Written in HashiCorp Configuration Language (HCL) or JSON, describing the desired state of infrastructure.
+* **Providers**            - Plugins that enable Terraform to interact with various cloud platforms (AWS, Azure, GCP, etc.) and services.
+* **Resources**            - The individual components you create, manage, and modify (like EC2 instances, S3 buckets, etc.).
+* **State**                - Terraform keeps track of your infrastructure's current state in a state file, enabling it to determine what changes are needed.
+* **Modules**              - Reusable packages of Terraform configuration that can be shared and organized.
+
+### Terraform Block:
+
+The terraform block in a Terraform configuration file is a top-level block that configures settings related to Terraform itself, rather than any specific cloud provider or resource. It tells Terraform how to behave when running, including:
+
+#### 🔧 What the terraform block is used for:
+
+**Specifying required Terraform version** Ensures the configuration only runs with compatible versions.
+
+**Declaring required providers** Tells Terraform what providers to use (like AWS, Azure, GCP) and their versions.
+
+**Configuring the backend** Defines where Terraform stores its state files (like local file system, S3, etc.).
+
+**Enabling experimental features (optional)** For preview or upcoming features in Terraform.
+
+Example: 
+```
+terraform {
+  required_version = ">= 1.3.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  backend "s3" {
+    bucket         = "my-terraform-state-bucket"
+    key            = "prod/terraform.tfstate"
+    region         = "us-west-2"
+    encrypt        = true
+    dynamodb_table = "terraform-locks"
+  }
+}
+```
+
+**Resource Block**:
+
+![image](https://github.com/user-attachments/assets/756230ae-eab9-4d5c-a79c-35e9fd854510)
+
+
+
+Configuration model
+Complete Configuration
+What is provider ?
+Provider configuration ?
+Default Provider configuration ?
+Multiple providers configurations ?
+Referring to Alternate Provider Configurations ?
+Selecting Alternate Provider Configurations ?
 
 
 
