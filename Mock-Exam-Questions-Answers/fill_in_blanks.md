@@ -127,4 +127,19 @@
     ```
     Ans. aws_subnet.private_subnets[subnet_b].id
     ```
+21. Given the code snippet below, how would you identify the arn to be used in the output block that was retrieved by the data block?
+    ```
+    data "aws_s3_bucket" "data_bucket" {
+      bucket = "my-data-lookup-bucket-btk"
+    }
+    ...
+ 
+    output "s3_bucket_arn" {
+      value = ????
+    }
+    ```
+
+    ```
+    Ans data.aws_s3_bucket.data_bucket.arn
+    ```
 
