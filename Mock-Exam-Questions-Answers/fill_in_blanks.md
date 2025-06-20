@@ -142,4 +142,47 @@
     ```
     Ans data.aws_s3_bucket.data_bucket.arn
     ```
+22. You need to start managing an existing AWS S3 bucket with Terraform that was created manually outside of Terraform. Which block type should you use to incorporate this existing resource into your Terraform configuration? ___________ and ______________ ?
+    ```
+    Ans. import block & resource block
+    ```
+23. What feature does Terraform use to map configuration to resources in the real world? _______
+    ```
+    Ans. terraform state
+    ```
+24. A Terraform module (usually the root module of a configuration) can call other modules to include their resources into the configuration. A module that has been called by another module is often referred to as _______________.
+    ```
+    Ans. child module
+    ```
+25. What Terraform command can be used to evaluate and experiment with expressions in your configuration? _______
+    ```
+    Ans. terraform console
+    ```
+26. What CLI command and flag can you use to delete a resource named azurerm_resource_group.production that is managed by Terraform?_______________
+    ```
+    Ans. terraform destroy -target=azurerm_resource_group.production
+    ```
+27. In order to make a Terraform configuration file dynamic and/or reusable, static values should be converted to use what? ______________
+    ```
+    Ans. input variables
+    ```
+28. HCP Terraform can be managed from the CLI but requires __________?
+    ```
+    Ans. An API token
+    ```
+29. What is the best and easiest way for Terraform to read and write secrets from HashiCorp Vault? _________
+    ```
+    Ans. Vaultprovider
+    ```
+30. By default, where does Terraform Community/CLI store its state file? ____________
+    ```
+    Ans. in current working directory
+    ```
+31. What Terraform command can be used to inspect the current state file for a provider resource? ____________
+    ```
+    Ans. terraform show <provider_resource>.name
+    ```
 
+    
+    
+    
