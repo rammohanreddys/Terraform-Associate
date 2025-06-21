@@ -196,6 +196,10 @@ terraform untaint aws_instance.my_ec2                                     # Remo
 terraform force-unlock LOCK_ID                                            # forcefully unlock a locked state file, LOCK_ID provided when locking the State file beforehand
 ```
 
+<p align="center">
+  <img src="images/terraform-cheatsheet-scaled.jpg" alt="Description of my awesome image" width="600">
+</p>
+
 
   
 
