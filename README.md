@@ -8,6 +8,7 @@ Kodekloud Community login: moh*****7@gmail.com/Ra*@K****2526
 ## HCL Basics:
 
 https://utlabs.kodekloud.com/courses/udemy-labs-terraform-for-beginners/
+https://github.com/zealvora/kplabs-terraform-challenges
 
 **********
 Credentials: 
