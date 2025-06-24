@@ -178,6 +178,16 @@ Terraform doesn’t log much by default — on purpose. It stays clean and quiet
 * Provider-related errors
 * State inconsistencies
 
+### Terraform Log Levels Explained:
+
+|Level|Description|
+|-|-|
+|TRACE|One of the most descriptive log levels, if you set the log level to TRACE, Terraform will write every action and step into the log file.|
+|DEBUG|A little bit more sophisticated logging which is used by developers at critical or more complex pieces of code to reduce debugging time.|
+|INFO|The info log level is useful when needing to log some informative instructions or readme type instructions.|
+|WARN|Used when something is not critical but would be nice to include in the form of a log so that the developer can make adjustments later.|
+|ERROR|As the name suggests, this is used if something is terribly wrong and is a blocker.|
+
 #### Enabling Terraform Logging:
 
 Terraform uses the TF_LOG environment variable to set the desired log level.
@@ -208,15 +218,7 @@ terraform plan
 unset TF_LOG TF_LOG_PATH
 ```
 
-### Terraform Log Levels Explained:
 
-|Level|Description|
-|-|-|
-|TRACE|One of the most descriptive log levels, if you set the log level to TRACE, Terraform will write every action and step into the log file.|
-|DEBUG|A little bit more sophisticated logging which is used by developers at critical or more complex pieces of code to reduce debugging time.|
-|INFO|The info log level is useful when needing to log some informative instructions or readme type instructions.|
-|WARN|Used when something is not critical but would be nice to include in the form of a log so that the developer can make adjustments later.|
-|ERROR|As the name suggests, this is used if something is terribly wrong and is a blocker.|
 
 
 
