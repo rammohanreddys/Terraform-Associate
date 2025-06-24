@@ -51,10 +51,17 @@ Terraform allows us to include meta-argument within the resource block which all
 **Basics of Lifecycle Meta-Argument:**
 
 Some details of the default resource behavior can be customized using the special nested lifecycle block within a resource block body:
+```
+resource "aws_instance" "myec2" {
+   ami            = "ami-snjsdb238y8bhbv"
+   instance_type  = "t2.micro"
 
-<p align="center">
-  <img src="images/meta3.JPG" alt="Description of my awesome image" width="600">
-</p>
+   lifecycle {
+      ignore_changes = [tags]
+   #  ignore_changes = [tags, instance_type, ami]
+   }
+}
+```
 
 **Arguments Available:**
 
@@ -131,9 +138,16 @@ resource "aws_instance" "myec2" {
 
 Instead of a list, the special keyword all may be used to instruct Terraform to ignore all attributes, which means that Terraform can create and destroy the remote object but will never propose updates to it.
 
-<p align="center">
-  <img src="images/meta8.JPG" alt="Description of my awesome image" width="600">
-</p>
+```
+resource "aws_instance" "myec2" {
+   ami            = "ami-snjsdb238y8bhbv"
+   instance_type  = "t2.micro"
+
+   lifecycle {
+      ignore_changes = all
+   }
+}
+```
 
 ## 2. Meta Argument - depends_on:
 
@@ -335,9 +349,24 @@ These object has two attributes:
 
 When for_each is used with map, we can make use of each object to extract both key and value from the given map.
 
-<p align="center">
-  <img src="images/meta16.JPG" alt="Description of my awesome image" width="600">
-</p>
+```
+variable "mymap" {
+  default = {
+    dev		= "ami-123"
+	prod	= "ami-456"
+  }
+}
+
+resource "aws_instance" "web" {
+  for_each		= var.mymap
+  ami			= each.value
+  instance_type	= "t3.micro"
+  
+  tags = {
+    Name = each.key
+  }
+}
+```
 
 
 
