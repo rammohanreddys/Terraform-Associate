@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/eb45848c-adda-4c8c-929c-2170b26480da)# Terraform Meta-argumnets and Functions
+# Terraform Meta-argumnets and Functions
 
 ## Resource Behavior and Meta-Argument:
 
