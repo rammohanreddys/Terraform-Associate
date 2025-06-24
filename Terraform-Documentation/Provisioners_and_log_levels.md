@@ -2,13 +2,12 @@
 
 ## Terraform Provisioners:
 
-### What are Terraform Provisioners?
+#### What are Terraform Provisioners?
 
+Terraform's primary purpose is to define and manage infrastructure declaratively. This means you describe the desired state of your infrastructure, and Terraform figures out how to achieve it. Provisioners, however, introduce an imperative element, allowing you to perform specific actions that might not be directly supported by a Terraform provider.
 <p align="center">
   <img src="images/provisioners.JPG" alt="Description of my awesome image" width="600">
 </p>
-
-Terraform's primary purpose is to define and manage infrastructure declaratively. This means you describe the desired state of your infrastructure, and Terraform figures out how to achieve it. Provisioners, however, introduce an imperative element, allowing you to perform specific actions that might not be directly supported by a Terraform provider.
 
 **They are generally used for:**
 
@@ -26,11 +25,11 @@ Terraform's primary purpose is to define and manage infrastructure declaratively
 
 #### 1. local-exec:
 
+Executes a command on the machine running Terraform (your local machine or CI/CD runner).
+
 <p align="center">
   <img src="images/provisioner3.JPG" alt="Description of my awesome image" width="600">
 </p>
-
-Executes a command on the machine running Terraform (your local machine or CI/CD runner).
 
 ```
 resource "aws_instance" "example" {
@@ -44,11 +43,11 @@ resource "aws_instance" "example" {
 ```
 #### 2. remote-exec:
 
+Runs commands on the remote resource (e.g., a VM) using SSH or WinRM.
+
 <p align="center">
   <img src="images/provisioner4.JPG" alt="Description of my awesome image" width="600">
 </p>
-
-Runs commands on the remote resource (e.g., a VM) using SSH or WinRM.
 
 ```
 resource "aws_instance" "example" {
@@ -98,39 +97,43 @@ resource "aws_instance" "example" {
 
 #### Additonal provisioner Types:
 
-* **create (default):** (Creation time provisioner)
+* **Creation-Time Provisioner(default):** 
 
-Runs after the resource is created.
-<p align="center">
-  <img src="images/provisioner5.JPG" alt="Description of my awesome image" width="600">
-</p>
-<p align="center">
-  <img src="images/provisioner6.JPG" alt="Description of my awesome image" width="600">
-</p>
+   Runs after the resource is created.
+
+   <p align="center">
+     <img src="images/provisioner6.JPG" alt="Description of my awesome image" width="600">
+   </p>
 
 * **Destroy:** (Destroy time provisioner)
 
-Runs when the resource is destroyed.
+  Runs when the resource is destroyed.
+     <p align="center">
+     <img src="images/provisioner11.JPG" alt="Description of my awesome image" width="600">
+   </p>
 
-```
-provisioner "local-exec" {
-  when    = "destroy"
-  command = "echo Instance is being destroyed"
-}
-```
+  ```
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "echo Instance is being destroyed"
+  }
+  ```
 
 ### Note: 
 
 1. It is not necessary to define a aws_instance resource block for provisioner to run. They can be defined inside other resource types as well.
 2. We can define multiple provisioners block in a single resource block.
-
-<p align="center">
-  <img src="images/provisioner7.JPG" alt="Description of my awesome image" width="600">
-</p>
+   <p align="center">
+     <img src="images/provisioner5.JPG" alt="Description of my awesome image" width="600">
+   </p>
 
 ### Failure Behaviour in Provisioners:
 
 By default, provisioners that fail will also cause the terraform apply itself to fail. This will lead to resource being tainted and we have to re-create the resource.
+
+<p align="center">
+  <img src="images/provisioner7.JPG" alt="Description of my awesome image" width="600">
+</p>
 
 <p align="center">
   <img src="images/provisioner8.JPG" alt="Description of my awesome image" width="600">
