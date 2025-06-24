@@ -157,3 +157,69 @@ By default, provisioners that fail will also cause the terraform apply itself to
 <p align="center">
   <img src="images/provisioner10.JPG" alt="Description of my awesome image" width="600">
 </p>
+
+## Terraform Log-levels:
+
+Terraform errors can be frustrating, especially when working with complex modules, remote backends, or dynamic blocks. But the good news? Terraform has built-in logging capabilities to help you troubleshoot like a pro.
+
+Logging is the practice of collecting and storing data related to the events and actions taking place within a system or application. It is a crucial aspect of system monitoring and debugging, enabling visibility into the system's behavior and facilitating the identification of issues or errors that may arise.
+
+### Why Enable Logging in Terraform?
+
+<p align="center">
+  <img src="images/logging1.JPG" alt="Description of my awesome image" width="600">
+</p>
+
+Terraform doesn’t log much by default — on purpose. It stays clean and quiet unless something goes wrong. But when you enable logging, you can cover:
+
+* Backend connection issues
+* API call failures
+* Plan and apply internals
+* Provider-related errors
+* State inconsistencies
+
+#### Enabling Terraform Logging:
+
+Terraform uses the TF_LOG environment variable to set the desired log level.
+```
+export TF_LOG=INFO
+```
+
+You can also direct logs to a file:
+```
+#### For Linux/macOS (Bash/Zsh) ####
+export TF_LOG=DEBUG
+export TF_LOG_PATH=terraform.log
+terraform plan
+
+#### For Windows (Command Prompt) ####
+set TF_LOG=TRACE
+set TF_LOG_PATH=terraform.log # Optional: to save logs to a file
+terraform plan
+
+#### For Windows (PowerShell): ####
+$env:TF_LOG="TRACE"
+$env:TF_LOG_PATH="terraform.log" # Optional: to save logs to a file
+terraform plan
+```
+
+**Note:** Always unset TF_LOG after you're done to avoid clutter:
+```
+unset TF_LOG TF_LOG_PATH
+```
+
+### Terraform Log Levels Explained:
+
+|Level|Description|
+|-|-|
+|TRACE|One of the most descriptive log levels, if you set the log level to TRACE, Terraform will write every action and step into the log file.|
+|DEBUG|A little bit more sophisticated logging which is used by developers at critical or more complex pieces of code to reduce debugging time.|
+|INFO|The info log level is useful when needing to log some informative instructions or readme type instructions.|
+|WARN|Used when something is not critical but would be nice to include in the form of a log so that the developer can make adjustments later.|
+|ERROR|As the name suggests, this is used if something is terribly wrong and is a blocker.|
+
+
+
+
+
+
