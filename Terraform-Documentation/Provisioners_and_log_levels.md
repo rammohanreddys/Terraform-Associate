@@ -31,6 +31,7 @@ Executes a command on the machine running Terraform (your local machine or CI/CD
   <img src="images/provisioner3.JPG" alt="Description of my awesome image" width="600">
 </p>
 
+**Example:**
 ```
 resource "aws_instance" "example" {
   ami           = "ami-0c55b159cbfafe1f0"
@@ -49,6 +50,7 @@ Runs commands on the remote resource (e.g., a VM) using SSH or WinRM.
   <img src="images/provisioner4.JPG" alt="Description of my awesome image" width="600">
 </p>
 
+**Example:**
 ```
 resource "aws_instance" "example" {
   ami           = "ami-0c55b159cbfafe1f0"
@@ -75,6 +77,7 @@ resource "aws_instance" "example" {
 
 Uploads files from your local machine to the remote instance.
 
+**Example:**
 ```
 resource "aws_instance" "example" {
   ami           = "ami-0c55b159cbfafe1f0"
