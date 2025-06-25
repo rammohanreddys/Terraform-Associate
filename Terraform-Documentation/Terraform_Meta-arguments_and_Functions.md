@@ -368,6 +368,9 @@ resource "aws_instance" "web" {
 }
 ```
 
+## Terraform Conditional expression:
+
+
 
 
 
